@@ -92,7 +92,7 @@ def guess_validator(letter_guess_input):
 
 
      letter_guess = letter_guess_input.strip().lower()
-     if len(letter_guess) == 1 and letter_guess.isalpha():
+     if len(letter_guess) == 1 and letter_guess.isalpha():  # validates that the letter guessed is one letter
           return letter_guess
      else:
           return None # Indicate invalid input
@@ -138,7 +138,7 @@ Reveals all locations of the letter guessed in the secret word
 
 def reveal_letter(letter_guess, revealed_list, secret_word_val):
 
-
+    # replace underscores with the guessed letter
      for i in range(len(secret_word_val)):
           if secret_word_val[i] == letter_guess:
                revealed_list[i] = letter_guess
@@ -205,7 +205,7 @@ def end_game_loss(current_wins, current_losses, secret_word_val):
      global wins
      global losses
      wins = current_wins
-     losses = current_losses + 1 # Still using global wins/losses for now, will refactor later
+     losses = current_losses + 1  
      print("\nYou are out of tries. You lose.")
      print(f"The mystery word was: {secret_word_val}")
      print(f"Your record is {wins} wins and {losses} losses.")
@@ -228,8 +228,8 @@ Start game:
 def start_game():
 
 
-     already_guessed = []
-     tries = 6
+     already_guessed = []    # creates empty list for already guessed letters
+     tries = 6    # sets tries to 6
 
      topic = ask_choice_str("Pick a topic: [animal/ food/ sports] ", ["animal", "food", "sports"])
      difficulty = ask_choice_str("Pick a difficulty: [easy/medium/hard] ", ["easy", "medium", "hard"])
@@ -257,8 +257,8 @@ def your_turn(current_tries, current_revealed, current_secret_word, current_alre
 
 
     while True:
-        letter_guess_input = input("Enter a letter: ")
-        letter_guess_validated = guess_validator(letter_guess_input)
+        letter_guess_input = input("Enter a letter: ")    # asks for the guessed letter 
+        letter_guess_validated = guess_validator(letter_guess_input)    # uses a function to validate the guess
         if letter_guess_validated:
             # Pass all necessary variables to guess_tracker and receive updated variables
             updated_tries, updated_revealed, updated_already_guessed = \
